@@ -68,9 +68,12 @@ public class BasicLocatorsTest {
 
     @Test
     public void partialLinkText() {
+        //Timer start
         WebElement howSearchWorksLink = driver.findElement(By.partialLinkText("How Search"));
         howSearchWorksLink.click();
         Assert.assertEquals("Google Search - Discover How Google Search Works", driver.getTitle());
+        //timer stop
+        //log the duration.
     }
 
     //NoSuchElementException ->
