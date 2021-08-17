@@ -13,13 +13,14 @@ public class BasicLocatorsTest {
 
     @BeforeClass
     public static void setup(){
+        //STAR ->
+        //Instead of System.setProperty("driver.chrome", "Path")
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
     }
 
     @Before
     public void goToHomepage() {
-        //Instead of System.setProperty("driver.chrome", "Path")
         driver.get("https://google.com");
     }
 
