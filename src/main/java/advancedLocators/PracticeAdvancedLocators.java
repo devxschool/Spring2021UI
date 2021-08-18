@@ -175,6 +175,20 @@ public class PracticeAdvancedLocators {
     }
 
 
+    @Test
+    public void elementNotFound(){
+        driver.get("https://www.amazon.com/");
+        driver.findElement(By.id("HelloWorld"));
+    }
+
+
+    @Test
+    public void elementNotFoundWithFindElementS() {
+        driver.get("https://www.amazon.com/");
+       List<WebElement> elements =  driver.findElements(By.id("HelloWorld"));
+       System.out.println(elements.size());
+    }
+
 //write a helper method which will help us validate Iphone search result details.
 
 //This method should accept a WebElement that is a Iphone div.
