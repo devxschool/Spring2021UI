@@ -14,6 +14,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
+import static org.junit.Assert.*;
+
 public class Synchronyzation {
 
 
@@ -75,7 +77,9 @@ public class Synchronyzation {
        wait.until(ExpectedConditions.attributeContains(By.id("colorChange"), "class", "text-danger"));
        WebElement colorChangeButton = driver.findElement(By.id("colorChange"));
 
-        Assert.assertTrue(colorChangeButton.getAttribute("class").contains("text-danger"));
+       assertTrue(colorChangeButton.getAttribute("class").contains("text-danger"));
+       assertEquals("hello", "hello");
+
     }
 
 
