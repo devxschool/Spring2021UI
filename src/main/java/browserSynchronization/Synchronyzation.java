@@ -79,7 +79,6 @@ public class Synchronyzation {
 
        assertTrue(colorChangeButton.getAttribute("class").contains("text-danger"));
        assertEquals("hello", "hello");
-
     }
 
 
