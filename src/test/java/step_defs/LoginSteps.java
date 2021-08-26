@@ -4,6 +4,7 @@ import cucumber.api.DataTable;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,8 +17,9 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 public class LoginSteps {
-    WebDriver driver = Driver.getDriver();
 
+    //intance variables are initialized once per one test scenario.
+    WebDriver driver = Driver.getDriver();
 
     @Given("^User navigates to Digital Bank login page$")
     public void user_navigates_to_Digital_Bank_login_page() {
@@ -44,4 +46,11 @@ public class LoginSteps {
     }
 
 
+    @Then("^User should be displayed with the error message \"([^\"]*)\"$")
+    public void user_should_be_displayed_with_the_error_message(String expectedErrorMessage) {
+        WebElement actualErrorMessage = driver.findElement(By.xpath("//div[contains(@class, 'alert-dismissible')]"));
+
+        String actualErrorMessageStr = actualErrorMessage.getText().trim().replaceAll("[^a-zA-Z-' .]", "");
+        Assert.assertEquals("Login error message mismatch", expectedErrorMessage.trim(), actualErrorMessageStr);
+    }
 }
