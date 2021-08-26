@@ -12,9 +12,11 @@ import pojo.LoginDataContainer;
 import utils.ConfigReader;
 import utils.Driver;
 
+import java.io.IOException;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static utils.Driver.takeScreenshot;
 
 public class LoginSteps {
 
@@ -28,7 +30,7 @@ public class LoginSteps {
     }
 
     @When("^User logs in with following credentials$")
-    public void user_logs_in_with_following_credentials(List<LoginDataContainer> loginData) {
+    public void user_logs_in_with_following_credentials(List<LoginDataContainer> loginData) throws IOException {
         WebElement username = driver.findElement(By.id("username"));
         WebElement password = driver.findElement(By.id("password"));
         WebElement submit = driver.findElement(By.id("submit"));
@@ -36,7 +38,9 @@ public class LoginSteps {
         username.sendKeys(loginData.get(0).getUsername());
         password.sendKeys(loginData.get(0).getPassword());
         submit.click();
+
     }
+
 
     @Then("^User should successfully be logged in to home page$")
     public void user_should_successfully_be_logged_in_to_home_page() {
