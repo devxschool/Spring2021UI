@@ -1,4 +1,4 @@
-package fileUpload;
+package selenium.fileUpload;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
@@ -30,7 +30,7 @@ public class FileUploadPractice {
         driver.get("https://demoqa.com/upload-download");
         WebElement fileUpload = driver.findElement(By.id("uploadFile"));
 
-//       fileUpload.click();
+//       selenium.fileUpload.click();
         //sendKeys on upload buttons will click and send keys.
         fileUpload.sendKeys("/Users/askarmusakunov/Desktop/logo.png");
 

@@ -12,9 +12,8 @@ import org.junit.runner.RunWith;
         },
         features = {"classpath:features"},
         glue = {"step_defs"},
-        tags = {"@smoke"},
+        tags = {"@regression"},
         dryRun = false
 )
-public class SmokeRunner {
-
+public class RegressionRunner {
 }

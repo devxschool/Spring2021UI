@@ -1,4 +1,4 @@
-package advancedLocators;
+package selenium.advancedLocators;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;

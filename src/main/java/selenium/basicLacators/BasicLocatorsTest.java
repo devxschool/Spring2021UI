@@ -1,4 +1,4 @@
-package basicLacators;
+package selenium.basicLacators;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.*;

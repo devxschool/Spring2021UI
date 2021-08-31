@@ -1,4 +1,4 @@
-package dropdowns;
+package selenium.dropdowns;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Before;

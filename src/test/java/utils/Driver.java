@@ -24,6 +24,8 @@ public class Driver {
     // We want to make sure new WebDriver is initialized only if it's not been initialized already.
     public static WebDriver getDriver() {
 
+        //We have to make the whole framework is using the same exact driver(browser window)
+        //so we make sure we initialize the driver only if it's not been initialized.
         if (driver == null) {
 
             switch (ConfigReader.getProperty("dbank.browser").toLowerCase()) {
