@@ -5,8 +5,8 @@ Feature: As a Customer, I want to add/edit/manage Bank Account Payment Profile
   Background:
     Given User navigates to Digital Bank login page
     And User logs in with following credentials
-      | username     | password  |
-      | aa@gmail.com | Password1 |
+      | username      | password  |
+      | 1b@gmail.com | Password1 |
     When User should successfully be logged in to home page
 
   @smoke

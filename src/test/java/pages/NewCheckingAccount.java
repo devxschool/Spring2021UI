@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import utils.AccountOwnership;
+import utils.AccountType;
 
 import static org.junit.Assert.assertTrue;
 
@@ -19,6 +21,9 @@ public class NewCheckingAccount {
 
     @FindBy(id = "checking-menu")
     public WebElement checkingMenu;
+
+    @FindBy(id = "new-checking-menu-item")
+    public WebElement newCheckingAccount;
 
     @FindBy(id = "savings-menu")
     public WebElement savings;
@@ -41,6 +46,31 @@ public class NewCheckingAccount {
     @FindBy(id = "visa-transfer-menu-item")
     public WebElement visaMenu;
 
+    @FindBy(id = "Standard Checking")
+    public WebElement checkingRadio;
+
+    @FindBy(id = "Interest Checking")
+    public WebElement interestRadio;
+
+    @FindBy(id = "Individual")
+    public WebElement individualRadio;
+
+    @FindBy(id = "Joint")
+    public WebElement joinRadio;
+
+    @FindBy(id = "name")
+    public WebElement nameTextBox;
+
+    @FindBy(id = "openingBalance")
+    public WebElement openingBalanceTextBox;
+
+
+    @FindBy(id = "newCheckingSubmit")
+    public WebElement newCheckingSubmitButton;
+
+    @FindBy(id = "newCheckingReset")
+    public WebElement newCheckingResetButton;
+
 
     public void validateAllMenuItemsAreDisplayed() {
         assertTrue("HomeButton is not displayed", homeMenu.isDisplayed());
@@ -53,4 +83,47 @@ public class NewCheckingAccount {
         assertTrue("transferMenu is not displayed", transferMenu.isDisplayed());
         assertTrue("visaMenu is not displayed", visaMenu.isDisplayed());
     }
+
+
+    public void createNewCheckingAccount(AccountType accountType, AccountOwnership ownership, String accountName, double initialBalance) {
+
+        if (accountType.equals(AccountType.STANDARD)) {
+            checkingRadio.click();
+        } else {
+            interestRadio.click();
+        }
+
+        if (ownership.equals(AccountOwnership.JOINT)) {
+            joinRadio.click();
+        } else {
+            individualRadio.click();
+        }
+
+        nameTextBox.sendKeys(accountName);
+        openingBalanceTextBox.sendKeys(initialBalance + "");
+
+        newCheckingSubmitButton.click();
+    }
+
+
+    public void createNewCheckingAccountAndReset(AccountType accountType, AccountOwnership ownership, String accountName, double initialBalance) {
+
+        if (accountType.equals(AccountType.STANDARD)) {
+            checkingRadio.click();
+        } else {
+            interestRadio.click();
+        }
+
+        if (ownership.equals(AccountOwnership.JOINT)) {
+            joinRadio.click();
+        } else {
+            individualRadio.click();
+        }
+
+        nameTextBox.sendKeys(accountName);
+        openingBalanceTextBox.sendKeys(initialBalance + "");
+
+        newCheckingResetButton.click();
+    }
 }
+
