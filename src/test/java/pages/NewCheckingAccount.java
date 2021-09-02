@@ -1,5 +1,6 @@
 package pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,6 +9,9 @@ import org.openqa.selenium.support.PageFactory;
 import utils.AccountOwnership;
 import utils.AccountType;
 
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class NewCheckingAccount {
@@ -71,6 +75,26 @@ public class NewCheckingAccount {
     @FindBy(id = "newCheckingReset")
     public WebElement newCheckingResetButton;
 
+
+    @FindBy(xpath = "//ul[@class='sub-menu children dropdown-menu show']")
+    public WebElement checkingMenuList;
+
+
+    //expectedList [View Checking,New Checking] actual [New Checking, View Checking]
+    //
+    public void validateTheCheckingMenuList(List<String> expectedOptions) {
+        List<WebElement> checkingMenuItems = checkingMenuList.findElements(By.xpath("li"));
+
+        assertEquals(expectedOptions.size(), checkingMenuItems.size());
+
+        for (WebElement element : checkingMenuItems) {
+            for (String option : expectedOptions) {
+                if (element.getText().toLowerCase().trim().equalsIgnoreCase(option.toLowerCase().trim())) {
+                    assertEquals(option.toLowerCase().trim(), element.getText().toLowerCase().trim());
+                }
+            }
+        }
+    }
 
     public void validateAllMenuItemsAreDisplayed() {
         assertTrue("HomeButton is not displayed", homeMenu.isDisplayed());

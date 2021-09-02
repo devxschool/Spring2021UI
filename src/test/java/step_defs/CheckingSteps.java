@@ -58,5 +58,14 @@ public class CheckingSteps {
     }
 
 
+    @Then("^Verify that \"([^\"]*)\" dropdown has following options$")
+    public void verify_that_dropdown_has_following_options(String accountType, List<String> views) throws Throwable {
+        if (accountType.equalsIgnoreCase("checking")) {
+            newCheckingAccount.checkingMenu.click();
+            newCheckingAccount.validateTheCheckingMenuList(views);
+        }
+    }
+
+
 }
 
