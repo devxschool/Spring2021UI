@@ -1,4 +1,4 @@
-`@regression
+@regression
 Feature: Digital Bank Transactions
 
   Background: Login to Digital Bank

@@ -17,6 +17,6 @@ public class Hooks {
         driver.findElement(By.cssSelector("img[class=\"user-avatar rounded-circle\"]")).click();
         driver.findElement(By.xpath("//a[text()='Logout']")).click();
 
-        Driver.takeScreenshot(scenario);
+//        Driver.takeScreenshot(scenario);
     }
 }
