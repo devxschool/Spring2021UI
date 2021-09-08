@@ -4,15 +4,21 @@ import cucumber.api.Scenario;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.BrowserType;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 public class Driver {
@@ -45,6 +51,12 @@ public class Driver {
                     WebDriverManager.iedriver().setup();
                     driver = new InternetExplorerDriver();
                     break;
+                case "saucelabs":
+                    String platform = System.getProperty("dbank.saucelabs.platform");
+                    String browser = System.getProperty("dbank.saucelabs.browser");
+                    String browserVersion = System.getProperty("dbank.saucelabs.browser.version");
+                    driver = loadSauceLabs(platform, browser, browserVersion);
+                    break;
                 default:
                     WebDriverManager.chromedriver().setup();
                     driver = new ChromeDriver();
@@ -71,13 +83,12 @@ public class Driver {
 
         if (scenario.isFailed()) {
             //taking the screenshot and saving it in byte arrays.
-            final byte[] screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
+            final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
 
-            scenario.embed(screenshot,"image/png");
+            scenario.embed(screenshot, "image/png");
 
         }
     }
-
 
 
     /**
@@ -89,5 +100,29 @@ public class Driver {
             driver.quit();
             driver = null;
         }
+    }
+
+    private static WebDriver loadSauceLabs(String platform, String browserType, String browserVersion) {
+
+        String USERNAME = ConfigReader.getProperty("dbank.saucelabs.username");
+        String ACCESS_KEY = "9cacc66e-b2b4-4794-ae64-9e93c9f43d15";
+        String HOST = ConfigReader.getProperty("dbank.saucelabs.host");
+
+
+        //setup url to the hub which is running on saucelabs VMs.
+        String url = "https://" + USERNAME + ":" + ACCESS_KEY + "@" + HOST;
+
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("platformName", platform);
+        capabilities.setCapability("browserName",browserType);
+        capabilities.setCapability("browserVersion", browserVersion);
+
+        WebDriver driver = null;
+        try {
+            driver = new RemoteWebDriver(new URL(url), capabilities);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        return driver;
     }
 }

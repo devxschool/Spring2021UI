@@ -78,3 +78,29 @@ Java is enterprise level programming language.
 
 
 CRM -> Customer Relations Managment tool.
+
+
+######Selenium Grid
+Selenium Grid is one of the components of selenium. it's used for cross platform and cross browser testing.
+it could also be used for parallel testing to bring down the UI autmations slow test exectution time. 
+
+Selenium Grid is a java process that needs to be installed on multiple servers. There hub which distributest the commands to nodes. 
+each node can be different platform. In order to use Selenium Grid we need do pretty complex setup of VMs and configuring hub with nodes. 
+Also we would need to make sure each hub and node servers have all browsers installed. 
+
+###Sauce Labs
+Sauce labs is a paid tool that uses Selenium Grid and removes the need to buying configuring and managing our own servers(vms). 
+It supports all kids of platforms and browsers, offers video recorings of browser sesssions. There is absolutely no difference between running locally vs
+on saucelabs from test perfromance and test results. We still get the nice pie-chart report with screenshots. 
+
+SauceLabs has been a great option for us as we saved more money by avoiding managing our own vms. 
+
+
+###Docker
+Docker is concept of creating multiple pseudo severs within a single server. Each pseudo server is called a container in Docker. 
+Containers are created and configured by writting docker images. This process extremely simplifies the process of recreating same kind of environment in 
+different servers. 
+
+###AWS 
+Amazon web services offers many services like Virtual servers, media storages, AI libraries, etc. 
+
